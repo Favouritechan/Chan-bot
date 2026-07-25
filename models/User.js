@@ -20,7 +20,12 @@ const userSchema = new mongoose.Schema({
   job: {
     type: String,
     default: "Unemployed"
-  },
+},
+
+lastDaily: {
+    type: Number,
+    default: 0
+}
 
   level: {
     type: Number,
