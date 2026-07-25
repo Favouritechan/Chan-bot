@@ -25,7 +25,7 @@ module.exports = {
             .addFields(
                 {
                     name: "👛 Wallet",
-                    value: `₦${user.balance.toLocaleString()}`,
+                    value: `₦${user.wallet.toLocaleString()}`
                     inline: true
                 },
                 {
