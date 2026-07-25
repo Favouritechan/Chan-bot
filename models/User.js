@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema({
     default: "Unemployed"
 },
 
+inventory: {
+    type: [String],
+    default: []
+},
+
 lastDaily: {
     type: Number,
     default: 0
