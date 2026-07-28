@@ -30,7 +30,7 @@ inventory: {
 lastDaily: {
     type: Number,
     default: 0
-}
+},
 
   level: {
     type: Number,
