@@ -94,19 +94,21 @@ module.exports = {
 
         }
 
-        let amount;
+     let amount;
 
-      if (betInput === "all") {
+switch (amountInput) {
 
-    amount = user.wallet;
+    case "all":
+        amount = user.wallet;
+        break;
 
-} else if (betInput === "half") {
+    case "half":
+        amount = Math.floor(user.wallet / 2);
+        break;
 
-    amount = Math.floor(user.wallet / 2);
-
-} else {
-
-    amount = Number(betInput.replace(/,/g, ""));
+    default:
+        amount = Number(amountInput.replace(/,/g, ""));
+        break;
 
 }
 
