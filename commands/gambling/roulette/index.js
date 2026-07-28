@@ -59,13 +59,13 @@ module.exports = {
 
     async execute(interaction) {
 
-        const betInput = interaction.options
-            .getString("bet")
-            .toLowerCase();
+        const amountInput = interaction.options
+    .getString("bet")
+    .toLowerCase();
 
-        const choice = interaction.options
-            .getString("choice")
-            .toLowerCase();
+const choice = interaction.options
+    .getString("choice")
+    .toLowerCase();
 
         if (!isValidChoice(choice)) {
 
