@@ -96,15 +96,19 @@ module.exports = {
 
         let amount;
 
-        if (betInput === "all") {
+      if (betInput === "all") {
 
-            amount = user.wallet;
+    amount = user.wallet;
 
-        } else {
+} else if (betInput === "half") {
 
-            amount = Number(betInput.replace(/,/g, ""));
+    amount = Math.floor(user.wallet / 2);
 
-        }
+} else {
+
+    amount = Number(betInput.replace(/,/g, ""));
+
+}
 
         if (isNaN(amount) || amount < casinoConfig.minimumBet) {
 
@@ -159,6 +163,19 @@ module.exports = {
         user.wallet -= amount;
 
         await user.save();
+        
+        const existingBet = round.bets.find(
+    bet => bet.userId === interaction.user.id
+);
+
+if (existingBet) {
+
+    return interaction.reply({
+        content: "❌ You have already placed a bet in this roulette round.",
+        ephemeral: true
+    });
+
+}
 
         round.bets.push({
 
