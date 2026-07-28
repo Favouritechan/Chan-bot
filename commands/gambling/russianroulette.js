@@ -3,7 +3,7 @@ const User = require("../../models/User");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("roulette")
+    .setName("russianroulette")
     .setDescription("Play Russian Roulette.")
     .addIntegerOption(option =>
       option
