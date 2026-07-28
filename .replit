@@ -30,4 +30,5 @@ task = "shell.exec"
 args = "node index.js"
 
 [deployment]
-deploymentTarget = "cloudrun"
+deploymentTarget = "vm"
+run = ["node", "index.js"]
