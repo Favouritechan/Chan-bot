@@ -162,9 +162,6 @@ switch (amountInput) {
 
         }
 
-        user.wallet -= amount;
-
-        await user.save();
         
         const existingBet = round.bets.find(
     bet => bet.userId === interaction.user.id
