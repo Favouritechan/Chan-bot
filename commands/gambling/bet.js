@@ -15,9 +15,14 @@ module.exports = {
 
     async execute(interaction) {
 
-        const amountInput = interaction.options.getString("amount").toLowerCase();
+        const parseBet = require("../../utils/parseBet");
 
-let amount;
+const betInput = interaction.options.getString("amount");
+
+const amount = parseBet(
+    betInput,
+    user.wallet
+);
 
 if (amountInput === "all") {
     amount = user.wallet;
