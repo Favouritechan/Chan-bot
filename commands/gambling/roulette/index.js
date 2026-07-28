@@ -20,11 +20,34 @@ module.exports = {
 
         .setDescription("Join the live roulette table.")
 
-        .addStringOption(option =>
-            option
-                .setName("bet")
-                .setDescription("Amount to bet or 'all'")
-                .setRequired(true)
+      .addStringOption(option =>
+    option
+        .setName("bet")
+        .setDescription("Choose your bet")
+        .setRequired(true)
+        .addChoices(
+            { name: "🔴 Red", value: "red" },
+            { name: "⚫ Black", value: "black" },
+
+            { name: "1 - 18", value: "1-18" },
+            { name: "19 - 36", value: "19-36" },
+
+            { name: "1 - 12", value: "1-12" },
+            { name: "13 - 24", value: "13-24" },
+            { name: "25 - 36", value: "25-36" },
+
+            { name: "🎯 Single Number", value: "number" }
+        )
+)
+
+.addIntegerOption(option =>
+    option
+        .setName("number")
+        .setDescription("Only required if betting on a single number")
+        .setMinValue(0)
+        .setMaxValue(36)
+        .setRequired(false)
+)
         )
 
         .addStringOption(option =>
