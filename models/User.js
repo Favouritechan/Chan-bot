@@ -20,17 +20,17 @@ const userSchema = new mongoose.Schema({
   job: {
     type: String,
     default: "Unemployed"
-},
+  },
 
-inventory: {
+  inventory: {
     type: [String],
     default: []
-},
+  },
 
-lastDaily: {
+  lastDaily: {
     type: Number,
     default: 0
-},
+  },
 
   level: {
     type: Number,
@@ -50,6 +50,60 @@ lastDaily: {
   lastCollect: {
     type: Date,
     default: null
+  },
+
+  // ==========================
+  // ROULETTE STATISTICS
+  // ==========================
+
+  rouletteGames: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteWins: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteLosses: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteTotalWon: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteTotalLost: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteBiggestWin: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteBiggestLoss: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteCurrentStreak: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteBestStreak: {
+    type: Number,
+    default: 0
+  },
+
+  rouletteTotalBets: {
+    type: Number,
+    default: 0
   }
 
 }, { timestamps: true });
