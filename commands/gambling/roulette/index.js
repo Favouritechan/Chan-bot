@@ -56,12 +56,14 @@ module.exports = {
     async execute(interaction) {
 
         const amountInput = interaction.options
-    .getString("bet")
+    .getString("amount")
     .toLowerCase();
 
 const choice = interaction.options
-    .getString("choice")
+    .getString("bet")
     .toLowerCase();
+
+const number = interaction.options.getInteger("number");
 
         if (!isValidChoice(choice)) {
 
