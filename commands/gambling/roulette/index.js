@@ -16,46 +16,42 @@ module.exports = {
 
     data: new SlashCommandBuilder()
 
-        .setName("roulette")
+    .setName("roulette")
 
-        .setDescription("Join the live roulette table.")
+    .setDescription("Join the live roulette table.")
 
-      .addStringOption(option =>
-    option
-        .setName("bet")
-        .setDescription("Choose your bet")
-        .setRequired(true)
-        .addChoices(
-            { name: "🔴 Red", value: "red" },
-            { name: "⚫ Black", value: "black" },
+    .addStringOption(option =>
+        option
+            .setName("amount")
+            .setDescription("Amount to bet (100, all, half)")
+            .setRequired(true)
+    )
 
-            { name: "1 - 18", value: "1-18" },
-            { name: "19 - 36", value: "19-36" },
+    .addStringOption(option =>
+        option
+            .setName("bet")
+            .setDescription("Choose your bet")
+            .setRequired(true)
+            .addChoices(
+                { name: "🔴 Red", value: "red" },
+                { name: "⚫ Black", value: "black" },
+                { name: "1 - 18", value: "1-18" },
+                { name: "19 - 36", value: "19-36" },
+                { name: "1 - 12", value: "1-12" },
+                { name: "13 - 24", value: "13-24" },
+                { name: "25 - 36", value: "25-36" },
+                { name: "🎯 Single Number", value: "number" }
+            )
+    )
 
-            { name: "1 - 12", value: "1-12" },
-            { name: "13 - 24", value: "13-24" },
-            { name: "25 - 36", value: "25-36" },
-
-            { name: "🎯 Single Number", value: "number" }
-        )
-)
-
-.addIntegerOption(option =>
-    option
-        .setName("number")
-        .setDescription("Only required if betting on a single number")
-        .setMinValue(0)
-        .setMaxValue(36)
-        .setRequired(false)
-)
-        )
-
-        .addStringOption(option =>
-            option
-                .setName("choice")
-                .setDescription("red, black, 1-18, 19-36, 1-12, 13-24, 25-36 or 0-36")
-                .setRequired(true)
-        ),
+    .addIntegerOption(option =>
+        option
+            .setName("number")
+            .setDescription("Only for Single Number")
+            .setMinValue(0)
+            .setMaxValue(36)
+            .setRequired(false)
+    ),
 
     async execute(interaction) {
 
