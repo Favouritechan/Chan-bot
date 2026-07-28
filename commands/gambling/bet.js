@@ -5,16 +5,27 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("bet")
         .setDescription("Bet money for a chance to win double.")
-        .addIntegerOption(option =>
-            option
-                .setName("amount")
-                .setDescription("Amount to bet")
-                .setRequired(true)
+        .addStringOption(option =>
+    option
+        .setName("amount")
+        .setDescription("Amount, all or half")
+        .setRequired(true)
+)
         ),
 
     async execute(interaction) {
 
-        const amount = interaction.options.getInteger("amount");
+        const amountInput = interaction.options.getString("amount").toLowerCase();
+
+let amount;
+
+if (amountInput === "all") {
+    amount = user.wallet;
+} else if (amountInput === "half") {
+    amount = Math.floor(user.wallet / 2);
+} else {
+    amount = Number(amountInput.replace(/,/g, ""));
+}
 
         let user = await User.findOne({
             userId: interaction.user.id
