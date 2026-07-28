@@ -21,51 +21,46 @@ const client = new Client({
 
 client.commands = new Collection();
 
-// Load Commands
-const commandFolders = path.join(__dirname, "commands");
+// =======================
+// LOAD COMMANDS
+// =======================
 
-if (fs.existsSync(commandFolders)) {
-    const folders = fs.readdirSync(commandFolders);
+const commandsPath = path.join(__dirname, "commands");
 
-    for (const folder of folders) {
+const folders = fs.readdirSync(commandsPath);
 
-        const folderPath = path.join(commandFolders, folder);
+for (const folder of folders) {
 
-        const commandFiles = fs.readdirSync(folderPath).filter(file => file.endsWith(".js"));
+    const folderPath = path.join(commandsPath, folder);
 
-        for (const file of commandFiles) {
+    const items = fs.readdirSync(folderPath);
 
-            const command = require(path.join(folderPath, file));
+    for (const item of items) {
+
+        const itemPath = path.join(folderPath, item);
+
+        if (fs.statSync(itemPath).isDirectory()) {
+
+            const indexFile = path.join(itemPath, "index.js");
+
+            if (fs.existsSync(indexFile)) {
+
+                const command = require(indexFile);
+
+                client.commands.set(command.data.name, command);
+
+            }
+
+        }
+
+        else if (item.endsWith(".js")) {
+
+            const command = require(itemPath);
 
             client.commands.set(command.data.name, command);
 
         }
-    }
-}
-
-// Load Events
-const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
-
-for (const file of eventFiles) {
-
-    const event = require(`./events/${file}`);
-
-    if (event.once) {
-
-        client.once(event.name, (...args) => event.execute(...args, client));
-
-    } else {
-
-        client.on(event.name, (...args) => event.execute(...args, client));
 
     }
 
 }
-
-// MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-.then(() => console.log("MongoDB Connected"))
-.catch(console.error);
-
-// Login
-client.login(process.env.TOKEN);
