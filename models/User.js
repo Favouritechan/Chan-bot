@@ -16,7 +16,48 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  
+casino: {
+    gamesPlayed: {
+        type: Number,
+        default: 0
+    },
 
+    totalBet: {
+        type: Number,
+        default: 0
+    },
+
+    totalWon: {
+        type: Number,
+        default: 0
+    },
+
+    totalLost: {
+        type: Number,
+        default: 0
+    },
+
+    biggestWin: {
+        type: Number,
+        default: 0
+    },
+
+    biggestLoss: {
+        type: Number,
+        default: 0
+    },
+
+    currentStreak: {
+        type: Number,
+        default: 0
+    },
+
+    bestStreak: {
+        type: Number,
+        default: 0
+    }
+},
   job: {
     type: String,
     default: "Unemployed"
