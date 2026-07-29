@@ -170,17 +170,20 @@ if (existingBet) {
 
 }
 
-        round.bets.push({
+        user.wallet -= amount;
+await user.save();
 
-            userId: interaction.user.id,
+round.bets.push({
 
-            username: interaction.user.username,
+    userId: interaction.user.id,
 
-            amount,
+    username: interaction.user.username,
 
-            choice
+    amount,
 
-        });
+    choice: choice === "number" ? number.toString() : choice
+
+});
 
         round.totalPot += amount;
 
