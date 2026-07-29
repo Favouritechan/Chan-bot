@@ -137,18 +137,13 @@ switch (amountInput) {
         if (!round) {
 
             round = await RouletteRound.create({
-
-                active: true,
-
-                startedAt: new Date(),
-
-                bettingEndsAt:
-                    new Date(
-                        Date.now() +
-                        casinoConfig.bettingTime * 1000
-                    )
-
-            });
+    active: true,
+    channelId: interaction.channel.id,
+    startedAt: new Date(),
+    bettingEndsAt: new Date(
+        Date.now() + casinoConfig.bettingTime * 1000
+    )
+});
 
         }
 
