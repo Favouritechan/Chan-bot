@@ -206,7 +206,7 @@ round.bets.push({
 
                 `💰 Bet: **₦${amount.toLocaleString()}**\n` +
 
-                `🎯 Choice: **${choice}**\n\n` +
+                `🎯 Choice: **${choice === "number" ? number : choice}**\n\n` +
 
                 `⏳ Betting closes in **${casinoConfig.bettingTime} seconds**.`
 
