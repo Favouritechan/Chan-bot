@@ -177,7 +177,10 @@ round.bets.push({
 
     amount,
 
-    choice: choice === "number" ? number.toString() : choice
+    choice:
+    choice === "number"
+        ? String(number)
+        : choice
 
 });
 
