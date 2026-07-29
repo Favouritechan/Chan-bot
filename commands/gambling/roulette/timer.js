@@ -133,7 +133,43 @@ let winners = [];
         );
     }
 }
+    const resultEmbed = new EmbedBuilder()
+    .setColor("Gold")
+    .setTitle("🎰 Roulette Results")
+    .addFields(
+        {
+            name: "🎯 Winning Number",
+            value: `${winningNumber}`,
+            inline: true
+        },
+        {
+            name: "🎨 Winning Colour",
+            value: winningColor.toUpperCase(),
+            inline: true
+        }
+    )
+    .setTimestamp();
 
+if (winners.length > 0) {
+    resultEmbed.addFields({
+        name: "🏆 Winners",
+        value: winners.join("\n")
+    });
+} else {
+    resultEmbed.addFields({
+        name: "🏆 Winners",
+        value: "Nobody won this round."
+    });
+}
+
+await spinMessage.edit({
+    embeds: [resultEmbed]
+});
+
+// Delete the finished round
+await RouletteRound.findByIdAndDelete(round._id);
+
+    
 }, 10000);
 
     }, casinoConfig.bettingTime * 1000);
