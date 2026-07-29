@@ -65,18 +65,14 @@ const choice = interaction.options
 
 const number = interaction.options.getInteger("number");
 
-        if (!isValidChoice(choice)) {
+        if (choice === "number" && (number === null || number < 0 || number > 36)) {
 
-            return interaction.reply({
+    return interaction.reply({
+        content: "❌ Please choose a number between 0 and 36.",
+        ephemeral: true
+    });
 
-                content:
-                    "❌ Invalid choice.\n\nValid options:\n• red\n• black\n• 1-18\n• 19-36\n• 1-12\n• 13-24\n• 25-36\n• 0-36",
-
-                ephemeral: true
-
-            });
-
-        }
+}
 
         let user = await User.findOne({
             userId: interaction.user.id
