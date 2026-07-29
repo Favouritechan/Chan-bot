@@ -40,23 +40,10 @@ const spinMessage = await channel.send({
 // Wait 10 seconds for the spinning animation
 setTimeout(async () => {
 
-  // Generate winning number (0-36)
-const winningNumber = Math.floor(Math.random() * 37);
+  const result = spinWheel();
 
-// Determine winning colour
-let winningColor = "green";
-
-if (winningNumber !== 0) {
-
-    const redNumbers = [
-        1,3,5,7,9,12,14,16,18,
-        19,21,23,25,27,30,32,34,36
-    ];
-
-    winningColor = redNumbers.includes(winningNumber)
-        ? "red"
-        : "black";
-}
+const winningNumber = result.number;
+const winningColor = result.color;
 
 let winners = [];
 
