@@ -63,11 +63,9 @@ let winners = [];
     winningNumber,
     winningColor
 )) {
-
     continue;
 
 }
-
         const prize = bet.amount * multiplier;
 
         user.wallet += prize;
@@ -78,7 +76,7 @@ let winners = [];
             `👤 <@${bet.userId}> won **₦${prize.toLocaleString()}**`
         );
     }
-}
+
     const resultEmbed = new EmbedBuilder()
     .setColor("Gold")
     .setTitle("🎰 Roulette Results")
