@@ -55,7 +55,7 @@ let winners = [];
 
     if (!user) continue;
 
-    let multiplier = 0;
+    let multiplier = getMultiplier(bet.choice);
 
     // Single number (10x)
     if (bet.choice === String(winningNumber)) {
