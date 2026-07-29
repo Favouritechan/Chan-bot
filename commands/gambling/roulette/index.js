@@ -6,7 +6,7 @@ const {
 const User = require("../../../models/User");
 const RouletteRound = require("../../../models/RouletteRound");
 
-const casinoConfig = require("../../../config/casino");
+const { roulette: casinoConfig, payouts } = require("../../../config/casino");
 
 module.exports = {
 
