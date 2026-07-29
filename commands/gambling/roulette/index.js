@@ -6,10 +6,6 @@ const {
 const User = require("../../../models/User");
 const RouletteRound = require("../../../models/RouletteRound");
 
-const {
-    isValidChoice
-} = require("../../../utils/roulette");
-
 const casinoConfig = require("../../../config/casino");
 
 module.exports = {
