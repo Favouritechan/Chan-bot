@@ -2,6 +2,11 @@ const { EmbedBuilder } = require("discord.js");
 
 const RouletteRound = require("../../../models/RouletteRound");
 const User = require("../../../models/User");
+const {
+    spinWheel,
+    isWinningBet,
+    getMultiplier
+} = require("../../../utils/roulette");
 const { roulette: casinoConfig, payouts } = require("../../../config/casino");
 
 module.exports = async function startRoulette(client, roundId) {
