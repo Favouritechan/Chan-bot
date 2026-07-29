@@ -189,7 +189,7 @@ round.bets.push({
             [...new Set(round.bets.map(x => x.userId))].length;
 
         await round.save();
-        const startRoulette = require("./timer");
+        const startRoulette = require("./timer.js");
 
 if (round.totalBets === 1) {
     startRoulette(interaction.client, round._id);
