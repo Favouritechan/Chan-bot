@@ -52,16 +52,39 @@ for (const folder of folders) {
 
             }
 
-        }
-
         else if (item.endsWith(".js")) {
 
             const command = require(itemPath);
 
             client.commands.set(command.data.name, command);
 
-        }
+        }// =======================
+// LOAD EVENTS
+// =======================
 
+const eventsPath = path.join(__dirname, "events");
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith(".js"));
+
+for (const file of eventFiles) {
+    const event = require(path.join(eventsPath, file));
+
+    if (event.once) {
+        client.once(event.name, (...args) => event.execute(...args));
+    } else {
+        client.on(event.name, (...args) => event.execute(...args));
     }
-
 }
+
+// =======================
+// CONNECT TO MONGODB
+// =======================
+
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log("✅ MongoDB Connected"))
+    .catch(console.error);
+
+// =======================
+// LOGIN BOT
+// =======================
+
+client.login(process.env.TOKEN);
