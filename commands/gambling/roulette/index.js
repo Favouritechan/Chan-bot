@@ -182,28 +182,27 @@ if (round.totalBets === 1) {
 
         const embed = new EmbedBuilder()
 
-            .setColor("Gold")
+    .setColor("Gold")
 
-            .setTitle("🎰 Chan Casino")
+    .setTitle("🎰 Chan Casino")
 
-            .setDescription(
+    .setDescription(
 
-                `✅ Your bet has been placed!\n\n` +
+        `✅ Your bet has been placed!\n\n` +
 
-                `💰 Bet: **₦${amount.toLocaleString()}**\n` +
+        `💰 Bet: **₦${amount.toLocaleString()}**\n` +
 
-                `🎯 Choice: **${choice === "number" ? number : choice}**\n\n` +
+        `🎯 Choice: **${choice === "number" ? number : choice}**\n\n` +
 
-                `⏳ Betting closes in **${casinoConfig.bettingTime} seconds**.`
+        `⏳ Betting closes in **${casinoConfig.bettingTime} seconds**.`
 
-            )
+    )
 
-            .setFooter({
+    .setFooter({
+        text:
+            `Round Players: ${round.totalPlayers} | Bets: ${round.totalBets}`
 
-                text:
-                    `Round Players: ${round.totalPlayers} | Bets: ${round.totalBets}`
-
-            });
+    });
 
         return interaction.reply({
 
