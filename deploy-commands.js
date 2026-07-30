@@ -6,6 +6,7 @@ const path = require("path");
 
 const commands = [];
 
+// Load all commands
 const commandsPath = path.join(__dirname, "commands");
 const folders = fs.readdirSync(commandsPath);
 
