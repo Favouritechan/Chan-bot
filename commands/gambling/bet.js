@@ -10,7 +10,7 @@ module.exports = {
         .setName("amount")
         .setDescription("Amount, all or half")
         .setRequired(true)
-)
+),
 
     async execute(interaction) {
 
@@ -32,7 +32,7 @@ const amount = parseBet(
     user.wallet
 );
 
-        if (amount <= 0) {
+     if (amount === null || amount <= 0) {
             return interaction.reply({
                 content: "❌ Enter a valid amount.",
                 ephemeral: true
