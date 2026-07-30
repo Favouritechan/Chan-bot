@@ -6,7 +6,6 @@ const path = require("path");
 
 const commands = [];
 
-// Load all commands
 const commandsPath = path.join(__dirname, "commands");
 const folders = fs.readdirSync(commandsPath);
 
@@ -24,17 +23,27 @@ for (const folder of folders) {
             const indexFile = path.join(itemPath, "index.js");
 
             if (fs.existsSync(indexFile)) {
+
                 const command = require(indexFile);
-                commands.push(command.data.toJSON());
+
+                if (command.data) {
+                    commands.push(command.data.toJSON());
+                }
+
             }
 
         } else if (item.endsWith(".js")) {
 
             const command = require(itemPath);
-            commands.push(command.data.toJSON());
+
+            if (command.data) {
+                commands.push(command.data.toJSON());
+            }
 
         }
+
     }
+
 }
 
 const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
@@ -56,7 +65,9 @@ const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
         console.log("✅ Slash Commands Registered!");
 
     } catch (error) {
+
         console.error(error);
+
     }
 
 })();
