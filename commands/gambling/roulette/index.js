@@ -148,19 +148,6 @@ switch (amountInput) {
         }
 
         
-        const existingBet = round.bets.find(
-    bet => bet.userId === interaction.user.id
-);
-
-if (existingBet) {
-
-    return interaction.reply({
-        content: "❌ You have already placed a bet in this roulette round.",
-        ephemeral: true
-    });
-
-}
-
         user.wallet -= amount;
 await user.save();
 
