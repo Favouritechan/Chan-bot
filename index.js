@@ -47,14 +47,23 @@ for (const folder of folders) {
                 client.commands.set(command.data.name, command);
             }
 
-        } else if (item.endsWith(".js")) {
+        if (fs.existsSync(indexFile)) {
 
-            const command = require(itemPath);
-            client.commands.set(command.data.name, command);
+    const command = require(indexFile);
 
-        }
+    client.commands.set(command.data.name, command);
 
-    }
+}
+
+} else if (item.endsWith(".js")) {
+
+    const command = require(itemPath);
+
+    client.commands.set(command.data.name, command);
+
+}
+
+}
 
 }
 
