@@ -11,26 +11,8 @@ module.exports = {
         .setDescription("Amount, all or half")
         .setRequired(true)
 )
-        ),
 
     async execute(interaction) {
-
-        const parseBet = require("../../utils/parseBet");
-
-const betInput = interaction.options.getString("amount");
-
-const amount = parseBet(
-    betInput,
-    user.wallet
-);
-
-if (amountInput === "all") {
-    amount = user.wallet;
-} else if (amountInput === "half") {
-    amount = Math.floor(user.wallet / 2);
-} else {
-    amount = Number(amountInput.replace(/,/g, ""));
-}
 
         let user = await User.findOne({
             userId: interaction.user.id
@@ -41,6 +23,14 @@ if (amountInput === "all") {
                 userId: interaction.user.id
             });
         }
+        const parseBet = require("../../utils/parseBet");
+
+const betInput = interaction.options.getString("amount");
+
+const amount = parseBet(
+    betInput,
+    user.wallet
+);
 
         if (amount <= 0) {
             return interaction.reply({
