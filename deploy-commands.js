@@ -6,22 +6,33 @@ const path = require("path");
 
 const commands = [];
 
-// Load all commands
 const commandsPath = path.join(__dirname, "commands");
-
 const folders = fs.readdirSync(commandsPath);
 
 for (const folder of folders) {
+
     const folderPath = path.join(commandsPath, folder);
+    const items = fs.readdirSync(folderPath);
 
-    const commandFiles = fs.readdirSync(folderPath).filter(file => file.endsWith(".js"));
+    for (const item of items) {
 
-    for (const file of commandFiles) {
+        const itemPath = path.join(folderPath, item);
 
-        const command = require(path.join(folderPath, file));
+        if (fs.statSync(itemPath).isDirectory()) {
 
-        commands.push(command.data.toJSON());
+            const indexFile = path.join(itemPath, "index.js");
 
+            if (fs.existsSync(indexFile)) {
+                const command = require(indexFile);
+                commands.push(command.data.toJSON());
+            }
+
+        } else if (item.endsWith(".js")) {
+
+            const command = require(itemPath);
+            commands.push(command.data.toJSON());
+
+        }
     }
 }
 
@@ -34,22 +45,17 @@ const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
         console.log("Registering Slash Commands...");
 
         await rest.put(
-
             Routes.applicationGuildCommands(
                 process.env.CLIENT_ID,
                 process.env.GUILD_ID
             ),
-
             { body: commands }
-
         );
 
         console.log("✅ Slash Commands Registered!");
 
     } catch (error) {
-
         console.error(error);
-
     }
 
 })();
